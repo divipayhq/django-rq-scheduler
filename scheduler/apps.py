@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import os
+
 from django.apps import AppConfig
 from django.db.models.functions import Now
 from django.utils.translation import gettext_lazy as _
@@ -10,6 +12,9 @@ class SchedulerConfig(AppConfig):
     verbose_name = _('Django RQ Scheduler')
 
     def ready(self):
+        if os.environ.get('IS_SCHEDULER') != 'True':
+            return
+
         try:
             self.reschedule_cron_jobs()
             self.reschedule_repeatable_jobs()

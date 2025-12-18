@@ -1,0 +1,16 @@
+name: Merge Checks Complete
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+      - prod
+      - dev
+
+jobs:
+  merge-checks-complete:
+    runs-on: ubuntu-latest
+    steps:
+      - name: merge-checks-complete
+        run: echo 0
